@@ -1,3 +1,6 @@
+import java.util.Scanner;
+import java.util.Stack;
+
 class ListaEnlazada<AnyType> {
     private Nodo<AnyType> primero; // Puntero que apunta al inicio de la lista
     private Nodo<AnyType> ultimo; // Puntero que apunta al final de la lista
@@ -102,13 +105,19 @@ public class PruebaListaInvertida {
         ListaEnlazada<Integer> lista = new ListaEnlazada<>();
 
         // Leer una lista de enteros por pantalla
-        java.util.Scanner scanner = new java.util.Scanner(System.in);
+        Scanner scanner = new Scanner(System.in);
         System.out.println("Ingrese una lista de enteros separados por espacios:");
         String[] elementos = scanner.nextLine().split(" ");
 
-        // Insertar elementos en la lista
+        // Usar una pila para invertir los elementos antes de insertarlos
+        Stack<Integer> pila = new Stack<>();
         for (String elemento : elementos) {
-            lista.insertarInicio(Integer.parseInt(elemento));
+            pila.push(Integer.parseInt(elemento));
+        }
+
+        // Insertar elementos en la lista utilizando insertarInicio
+        while (!pila.isEmpty()) {
+            lista.insertarInicio(pila.pop());
         }
 
         // Imprimir la lista original

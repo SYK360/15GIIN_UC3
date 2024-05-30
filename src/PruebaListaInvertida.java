@@ -15,7 +15,9 @@ class ListaEnlazada<AnyType> {
 
     // Método para saber si la lista está vacía
     public boolean isEmpty() {
-        return primero == null;
+        if (primero==null)
+            return true;
+        return false;
     }
 
     // Método para saber tamaño de la lista
